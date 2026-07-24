@@ -1469,7 +1469,7 @@ jobs:
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v7
         with:
-          name: ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}{{ steps.suffix.outputs.value }}
+          name: ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}${{ steps.suffix.outputs.value }}
           path: ./AnyKernel3/*
 
       - name: Extract and Process ZRAM Module
@@ -1536,7 +1536,7 @@ jobs:
         run: |
           mkdir -p ReSukiSU
           cd AnyKernel3
-          zip -r9 "../ReSukiSU/ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}{{ steps.suffix.outputs.value }}.zip" *
+          zip -r9 "../ReSukiSU/ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}${{ steps.suffix.outputs.value }}.zip" *
           cd ..
           if [ -d "ZRAM-Module" ]; then
             cd ZRAM-Module
@@ -1589,8 +1589,8 @@ jobs:
         with:
           files: |
             ReSukiSU/*
-          tag_name: ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}
-          name: "ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}"
+          tag_name: ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}${{ steps.suffix.outputs.value }}
+          name: "ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}${{ steps.suffix.outputs.value }}"
           draft: false
           prerelease: false
         env:
