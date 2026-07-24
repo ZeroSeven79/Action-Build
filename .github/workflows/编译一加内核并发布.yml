@@ -318,7 +318,7 @@ jobs:
           fi
 
           # 传递组合信息
-          echo "value=${FILE_BASE} Android${ANDROID_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "value=${FILE_BASE}_Android${ANDROID_VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Debug Show Selected Inputs
         env:
@@ -1469,7 +1469,7 @@ jobs:
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.KSUVER }}_${{ steps.extract_info.outputs.value }}_${{ env.CKERNEL_VERSION }}${{ steps.suffix.outputs.value }}
+          name: ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}{{ steps.suffix.outputs.value }}
           path: ./AnyKernel3/*
 
       - name: Extract and Process ZRAM Module
@@ -1536,7 +1536,7 @@ jobs:
         run: |
           mkdir -p ReSukiSU
           cd AnyKernel3
-          zip -r9 "../ReSukiSU/${{ env.KSUVER }}_${{ steps.extract_info.outputs.value }}_${{ env.CKERNEL_VERSION }}${{ steps.suffix.outputs.value }}.zip" *
+          zip -r9 "../ReSukiSU/ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}{{ steps.suffix.outputs.value }}.zip" *
           cd ..
           if [ -d "ZRAM-Module" ]; then
             cd ZRAM-Module
@@ -1589,8 +1589,8 @@ jobs:
         with:
           files: |
             ReSukiSU/*
-          tag_name: ${{ env.KSUVER }}_${{ steps.extract_info.outputs.value }}_${{ env.CKERNEL_VERSION }}
-          name: "ReSukiSU ${{ env.KSUVER }} For ${{ steps.extract_info.outputs.value }}"
+          tag_name: ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}
+          name: "ReSukiSU-${{ env.KSUVER }}_${{ env.CKERNEL_VERSION }}_${{ steps.extract_info.outputs.value }}"
           draft: false
           prerelease: false
         env:
