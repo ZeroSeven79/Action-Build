@@ -105,7 +105,7 @@ on:
         type: boolean
         description: "是否升级LZ4到上游最新？//Upgrade LZ4 to the latest upstream?"
         required: true
-        default: true
+        default: false
       ZRAM:
         type: string
         description: "ZRAM(0关闭1开启)/算法名/大小//ZRAM (0: disable, 1: enable) / Algorithm name / Size"
@@ -144,7 +144,7 @@ on:
         type: boolean
         description: "是否添加Unicode不可见字码点绕过读取漏洞修复？//Add patch for Unicode invisible code point read bypass vulnerability?"
         required: true
-        default: true
+        default: false
       SCHED_HMBIRD:
         type: boolean
         description: "是否添加风驰驱动1.0？//Add Fengchi (HMBIRD) Driver 1.0?"
@@ -159,7 +159,7 @@ on:
         type: boolean
         description: "是否添加Re-Kernel？//Add Re-Kernel?"
         required: true
-        default: true
+        default: false
       SUSFS_DEV:
         type: boolean
         description: "是否拉取SUSFS-DEV分支？//Pull the SUSFS-DEV branch?"
@@ -1049,6 +1049,7 @@ jobs:
             set_config "CONFIG_DEVTMPFS=y"
             set_config "CONFIG_PID_NS=y"
             set_config "CONFIG_IPC_NS=y"
+            set_config "CONFIG_USER_NS=y"
             set_config "CONFIG_NAMESPACES=y"
             set_config "CONFIG_POSIX_MQUEUE=y"
             set_config "CONFIG_NETFILTER_XT_TARGET_REJECT=y"
