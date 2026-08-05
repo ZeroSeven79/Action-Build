@@ -76,7 +76,7 @@ on:
         type: choice
         description: "内核模块实现方式//Kernel module implementation method"
         required: true
-        default: N/A
+        default: KPN
         options:
           - KPM
           - KPN
@@ -105,7 +105,7 @@ on:
         type: boolean
         description: "是否升级LZ4到上游最新？//Upgrade LZ4 to the latest upstream?"
         required: true
-        default: false
+        default: true
       ZRAM:
         type: string
         description: "ZRAM(0关闭1开启)/算法名/大小//ZRAM (0: disable, 1: enable) / Algorithm name / Size"
@@ -159,7 +159,7 @@ on:
         type: boolean
         description: "是否添加Re-Kernel？//Add Re-Kernel?"
         required: true
-        default: false
+        default: true
       SUSFS_DEV:
         type: boolean
         description: "是否拉取SUSFS-DEV分支？//Pull the SUSFS-DEV branch?"
