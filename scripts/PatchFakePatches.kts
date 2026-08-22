@@ -226,6 +226,17 @@ fun applyPostPatchFixups() {
             )
         }
     }
+
+    if (kmi == "android16-6.12") {
+        val openC = f("fs/open.c")
+        if (openC.exists() && openC.readText().contains("getname_flags(filename, lookup_flags, NULL)")) {
+            println("Fixing getname_flags calls for 6.12 (3-arg -> 2-arg)")
+            openC.replaceEachLine(
+                Regex("""getname_flags\(filename, lookup_flags, NULL\)"""),
+                "getname_flags(filename, lookup_flags)"
+            )
+        }
+    }
 }
 
 // Main
@@ -396,13 +407,6 @@ fun revert() {
         if (sublevel <= 141) {
             println("Reverting base.c Android 14 6.1 Fake Patch")
             f("fs/proc/base.c").deleteLine(Regex("""^#include <linux/dma-buf\.h>$"""))
-        }
-        if (sublevel >= 157) {
-            println("Reverting namespace.c Android 14 6.1 Fake Patch")
-            f("fs/namespace.c").insertAfter(
-                Regex("""^#include "internal\.h"$"""),
-                "#include <trace/hooks/blk.h>"
-            )
         }
     }
 
